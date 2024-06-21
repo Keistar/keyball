@@ -1,44 +1,5 @@
-
-/*
-Copyright 2022 @Yowkees
-Copyright 2022 MURAOKA Taro (aka KoRoN, @kaoriya)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include QMK_KEYBOARD_H
 #include "quantum.h"
-
-// コード表
-// 【KBC_RST: 0x5DA5】Keyball 設定のリセット
-// 【KBC_SAVE: 0x5DA6】現在の Keyball 設定を EEPROM に保存します
-// 【CPI_I100: 0x5DA7】CPI を 100 増加させます(最大:12000)
-// 【CPI_D100: 0x5DA8】CPI を 100 減少させます(最小:100)
-// 【CPI_I1K: 0x5DA9】CPI を 1000 増加させます(最大:12000)
-// 【CPI_D1K: 0x5DAA】CPI を 1000 減少させます(最小:100)
-// 【SCRL_TO: 0x5DAB】タップごとにスクロールモードの ON/OFF を切り替えます
-// 【SCRL_MO: 0x5DAC】キーを押している間、スクロールモードになります
-// 【SCRL_DVI: 0x5DAD】スクロール除数を１つ上げます(max D7 = 1/128)← 最もスクロール遅い
-// 【SCRL_DVD: 0x5DAE】スクロール除数を１つ下げます(min D0 = 1/1)← 最もスクロール速い
-
-////////////////////////////////////
-///
-/// 自動マウスレイヤーの実装 ここから
-/// 参考にさせていただいたページ
-/// https://zenn.dev/takashicompany/articles/69b87160cda4b9
-///
-////////////////////////////////////
 
 enum custom_keycodes
 {
@@ -54,8 +15,6 @@ enum click_state
     CLICKABLE, // マウスレイヤー有効になりクリック入力が取れる。 Mouse layer is enabled to take click input.
     CLICKING,  // クリック中。 Clicking.
 };
-
-
 
 enum click_state state; // 現在のクリック入力受付の状態 Current click input reception status
 uint16_t click_timer;   // タイマー。状態に応じて時間で判定する。 Timer. Time to determine the state of the system.
